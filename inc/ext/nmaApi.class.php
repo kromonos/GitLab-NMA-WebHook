@@ -107,7 +107,7 @@ class nmaApi
      *
      * @return bool|mixed|SimpleXMLElement|string
      */
-    public function notify($application = '', $event = '', $description = '', $priority = 0, $apiKeys = false)
+    public function notify($application = '', $event = '', $description = '', $url = false, $priority = 0, $apiKeys = false)
     {
         if (empty($application) || empty($event) || empty($description)) {
             return $this->error('you must supply a application name, event and long desc');
@@ -118,6 +118,10 @@ class nmaApi
                       'description' => substr($description, 0, 10000),
                       'priority'    => $priority
         );
+
+        if ( $url ) {
+          $post['url'] = substr($url, 0, 2000);
+        }
 
         if ($this->devKey) {
             $post['developerkey'] = $this->devKey;
