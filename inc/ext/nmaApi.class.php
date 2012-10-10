@@ -113,10 +113,11 @@ class nmaApi
             return $this->error('you must supply a application name, event and long desc');
         }
 
-        $post = array('application' => substr($application, 0, 256),
-                      'event'       => substr($event, 0, 1000),
-                      'description' => substr($description, 0, 10000),
-                      'priority'    => $priority
+        $post = array('application'  => substr($application, 0, 256),
+                      'event'        => substr($event, 0, 1000),
+                      'description'  => substr($description, 0, 10000),
+                      'priority'     => $priority,
+                      'content-type' => 'text/html'
         );
 
         if ( $url ) {
